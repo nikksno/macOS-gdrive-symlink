@@ -109,7 +109,7 @@ fi
 echo "${b}The user directories we'll be locating shortly are the Desktop, Documents, Downloads, etc... folders you find in any macOS user account.${x}"
 echo
 
-read -p "${b}Do the user directories already precisely exist in $seluser's Google Drive [i.e. from a manual attempt at achieving this script's function]? (Y/n): ${x}" -n 1 -r
+read -p "${b}Do the user directories already precisely exist in $seluser's Google Drive [i.e. from a previous partial run of this script or a manual attempt at achieving this script's function]? (Y/n): ${x}" -n 1 -r
 echo
 if [[ ! $REPLY =~ ^[Nn]$ ]]
 then
@@ -136,7 +136,7 @@ then
 					read -p "${b}Now specify the name of Google Drive subdirectory inside of which the user directories are: ${x}" gdsubdir
 					echo
 				done
-				if [ -d $gdsubdir ]
+				if [ -d "/Users/$seluser/Google Drive/$gdsubdir" ]
 				then
 					exists=y
 				else
@@ -241,10 +241,12 @@ do
 
         else
 
-                if [ ! -z "$(ls $thislocaldir)" ]
+		diritemcount="$(ls -1 $thislocaldir | grep -v "^[.]" | wc -l | xargs)"
+
+		if [ ! $diritemcount = "0" ]
                 then
 
-			echo "${r}${b}The directory $thisgddir does not appear to be empty.${x}"
+			echo "${r}${b}The directory $thislocaldir does not appear to be empty.${x}"
 			echo
 			echo "${b}Having selected that User Directories already exist in Drive, running this script on this directory would all of its contents to be deleted.${x}."
 			echo
@@ -255,7 +257,7 @@ do
 			exit
                 fi
 
-                echo rm -r $thislocaldir && ln -s $thisgddir $thislocaldir #debug
+                echo "rm -r $thislocaldir && ln -s $thisgddir $thislocaldir" #debug
                 echo "${g}${b}Deleted $thislocaldir and created symlink $thislocaldir pointing to $thisgddir.${x}"
                 echo
 
