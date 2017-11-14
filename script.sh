@@ -247,7 +247,7 @@ do
 
         else
 
-		diritemcount="$(ls -1 '$thislocaldir' | grep -v "^[.]" | wc -l | xargs)"
+		diritemcount="$(ls -1 "$thislocaldir" | grep -v "^[.]" | wc -l | xargs)"
 
 		if [ ! $diritemcount = "0" ]
                 then
