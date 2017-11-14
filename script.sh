@@ -224,58 +224,63 @@ do
                 proceed=n
 	fi
 
-	if [ $moveuserdirs = "y" ]
-	then
+        if [ $proceed = "y" ]
+        then
 
-		if [ -d "$thisgddir" ]
-		then
-			echo "${r}${b}The directory $thisgddir already exists on Google Drive.${x}"
-			echo
-			echo "${b}Re-run the script either after merging $thislocaldir with $thisgddir or selecting a different location on Google Drive${x}."
-			echo
-                        echo "${b}Skipping this directory...${x}"
-        		echo
-                        proceed=n
-                fi
+                if [ $moveuserdirs = "y" ]
+        	then
 
-                if [ $proceed = "y" ]
-                then
-                        mv "$thislocaldir" "$thisgddir"
-                        echo "${g}${b}Moved $thislocaldir to $thisgddir.${x}"
-                        echo
-                fi
+        		if [ -d "$thisgddir" ]
+        		then
+        			echo "${r}${b}The directory $thisgddir already exists on Google Drive.${x}"
+        			echo
+        			echo "${b}Re-run the script either after merging $thislocaldir with $thisgddir or selecting a different location on Google Drive${x}."
+        			echo
+                                echo "${b}Skipping this directory...${x}"
+                		echo
+                                proceed=n
+                        fi
 
-        else
+                        if [ $proceed = "y" ]
+                        then
+                                mv "$thislocaldir" "$thisgddir"
+                                echo "${g}${b}Moved $thislocaldir to $thisgddir.${x}"
+                                echo
+                        fi
 
-		diritemcount="$(ls -1 "$thislocaldir" | grep -v "^[.]" | wc -l | xargs)"
+                else
 
-		if [ ! $diritemcount = "0" ]
-                then
-			echo "${r}${b}The directory $thislocaldir does not appear to be empty.${x}"
-			echo
-			echo "${b}Having selected that User Directories already exist in Drive, running this script on this directory would cause all of its contents to be deleted.${x}."
-			echo
-                        echo "${b}Re-run the script either after merging $thislocaldir with $thisgddir or otherwise after having disposed of all items in $thislocaldir.${x}"
-                        echo
-                        echo "${b}Skipping this directory...${x}"
-        		echo
-                        proceed=n
-                fi
+        		diritemcount="$(ls -1 "$thislocaldir" | grep -v "^[.]" | wc -l | xargs)"
 
-                if [ ! -d "$thisgddir" ]
-                then
-                        echo "${r}${b}The directory $thisgddir does not appear to be exist.${x}"
-			echo
-			echo "${b}Creating it now...${x}."
-			echo
-                        mkdir -p "$thisgddir"
-                fi
+        		if [ ! $diritemcount = "0" ]
+                        then
+        			echo "${r}${b}The directory $thislocaldir does not appear to be empty.${x}"
+        			echo
+        			echo "${b}Having selected that User Directories already exist in Drive, running this script on this directory would cause all of its contents to be deleted.${x}."
+        			echo
+                                echo "${b}Re-run the script either after merging $thislocaldir with $thisgddir or otherwise after having disposed of all items in $thislocaldir.${x}"
+                                echo
+                                echo "${b}Skipping this directory...${x}"
+                		echo
+                                proceed=n
+                        fi
 
-                if [ $proceed = "y" ]
-                then
-                        rm -r "$thislocaldir" && ln -s "$thisgddir" "$thislocaldir"
-                        echo "${g}${b}Deleted $thislocaldir and created symlink $thislocaldir pointing to $thisgddir.${x}"
-                        echo
+                        if [ ! -d "$thisgddir" ]
+                        then
+                                echo "${r}${b}The directory $thisgddir does not appear to be exist.${x}"
+        			echo
+        			echo "${b}Creating it now...${x}."
+        			echo
+                                mkdir -p "$thisgddir"
+                        fi
+
+                        if [ $proceed = "y" ]
+                        then
+                                rm -r "$thislocaldir" && ln -s "$thisgddir" "$thislocaldir"
+                                echo "${g}${b}Deleted $thislocaldir and created symlink $thislocaldir pointing to $thisgddir.${x}"
+                                echo
+                        fi
+
                 fi
 
         fi
