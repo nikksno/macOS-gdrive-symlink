@@ -240,7 +240,7 @@ do
 
                 if [ $proceed = "y" ]
                 then
-                        echo mv "$thislocaldir" "$thisgddir" #debug
+                        mv "$thislocaldir" "$thisgddir"
                         echo "${g}${b}Moved $thislocaldir to $thisgddir.${x}"
                         echo
                 fi
@@ -273,7 +273,7 @@ do
 
                 if [ $proceed = "y" ]
                 then
-                        echo "rm -r $thislocaldir && ln -s $thisgddir $thislocaldir" #debug
+                        rm -r "$thislocaldir" && ln -s "$thisgddir" "$thislocaldir"
                         echo "${g}${b}Deleted $thislocaldir and created symlink $thislocaldir pointing to $thisgddir.${x}"
                         echo
                 fi
