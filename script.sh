@@ -227,7 +227,7 @@ do
 	if [ $moveuserdirs = "y" ]
 	then
 
-		if [ -d $thisgddir ]
+		if [ -d "$thisgddir" ]
 		then
 			echo "${r}${b}The directory $thisgddir already exists on Google Drive.${x}"
 			echo
@@ -240,14 +240,14 @@ do
 
                 if [ $proceed = "y" ]
                 then
-                        echo mv $thislocaldir $thisgddir #debug
+                        echo mv "$thislocaldir" "$thisgddir" #debug
                         echo "${g}${b}Moved $thislocaldir to $thisgddir.${x}"
                         echo
                 fi
 
         else
 
-		diritemcount="$(ls -1 $thislocaldir | grep -v "^[.]" | wc -l | xargs)"
+		diritemcount="$(ls -1 '$thislocaldir' | grep -v "^[.]" | wc -l | xargs)"
 
 		if [ ! $diritemcount = "0" ]
                 then
@@ -262,13 +262,13 @@ do
                         proceed=n
                 fi
 
-                if [ ! -d $thisgddir ]
+                if [ ! -d "$thisgddir" ]
                 then
                         echo "${r}${b}The directory $thisgddir does not appear to be exist.${x}"
 			echo
 			echo "${b}Creating it now...${x}."
 			echo
-                        mkdir -p $thisgddir
+                        mkdir -p "$thisgddir"
                 fi
 
                 if [ $proceed = "y" ]
