@@ -208,8 +208,8 @@ declare -a dirarray=(
 
 for i in "${dirarray[@]}"
 do
-	thislocaldir=$localbasedir/$i
-	thisgddir=$gdbasedir/$i
+	thislocaldir="$localbasedir/$i"
+	thisgddir="$gdbasedir/$i"
 
         proceed=y
 
