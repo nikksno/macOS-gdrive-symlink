@@ -109,7 +109,7 @@ fi
 echo "${b}The user directories we'll be locating shortly are the Desktop, Documents, Downloads, etc... folders you find in any macOS user account.${x}"
 echo
 
-read -p "${b}Do the user directories already precisely exist in $seluser's Google Drive [i.e. from a previous partial run of this script or a manual attempt at achieving this script's function]? (Y/n): ${x}" -n 1 -r
+read -p "${b}Do the user directories already precisely exist in $seluser's Google Drive [i.e. from a previous manual attempt at achieving this script's function]? (Y/n): ${x}" -n 1 -r
 echo
 if [[ ! $REPLY =~ ^[Nn]$ ]]
 then
