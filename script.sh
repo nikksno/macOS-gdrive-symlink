@@ -24,9 +24,9 @@ echo
 
 echo "${b}These are the current users in this system:${x}"
 echo
+sleep 1
 dscacheutil -q user | grep -A 3 -B 2 -e uid:\ 5'[0-9][0-9]'
 echo
-sleep 1
 
 defined=n
 until [ $defined = "y" ]
@@ -93,7 +93,7 @@ echo
 
 
 
-if [ ! -d "$seluser/Google Drive" ]
+if [ ! -d "/Users/$seluser/Google Drive" ]
 then
 	echo "${r}${b}Google Drive doesn't seem to be installed and/or set up for user $seluser${x}"
 	echo
