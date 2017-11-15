@@ -287,5 +287,7 @@ do
 
 done
 
-echo "${b}All done!${x}"
+echo "${b}All done. Rebooting system now...${x}"
 echo
+read -p "[press enter to continue...]"
+reboot
