@@ -28,7 +28,6 @@ echo
 
 echo "${b}These are the current users in this system:${x}"
 echo
-sleep 1
 dscacheutil -q user | grep -A 3 -B 2 -e uid:\ 5'[0-9][0-9]'
 echo
 
@@ -261,8 +260,8 @@ do
 
                         if [ $proceed = "y" ]
                         then
-                                mv "$thislocaldir" "$thisgddir"
-                                echo "${g}${b}Moved $thislocaldir to $thisgddir.${x}"
+                                mv "$thislocaldir" "$thisgddir" && ln -s "$thisgddir" "$thislocaldir"
+                                echo "${g}${b}Moved $thislocaldir to $thisgddir and created symlink $thislocaldir pointing to $thisgddir.${x}"
                                 echo
                         fi
 
