@@ -292,7 +292,12 @@ do
 
                         if [ $proceed = "y" ]
                         then
-                                rm -r "$thislocaldir" && ln -s "$thisgddir" "$thislocaldir"
+				if [ ! -d $thislocaldir ]
+				then
+					ln -s "$thisgddir" "$thislocaldir"
+				else
+	                                rm -r "$thislocaldir" && ln -s "$thisgddir" "$thislocaldir"
+				fi
                                 echo "${g}${b}Deleted $thislocaldir and created symlink $thislocaldir pointing to $thisgddir.${x}"
                                 echo
                         fi
