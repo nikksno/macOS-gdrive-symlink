@@ -215,7 +215,21 @@ do
 	thislocaldir="$localbasedir/$i"
 	thisgddir="$gdbasedir/$i"
 
-        proceed=y
+	proceed=y
+
+	if [ ! -d $thislocaldir ]
+	then
+		echo "${r}${b}$thislocaldir doesn't seem to exist for this user.${x}"
+		echo
+		echo "${b}This is strange, it's likely you've already partially run this script and have encoutered errors.${x}"
+		echo
+		echo "${b}If this is the case, please open an issue on GitHub, thank you.${x}"
+		echo
+		echo "${b}Skipping this directory...${x}"
+		echo
+		proceed=n
+	fi
+
 
 	if [[ -L "$thislocaldir" && -d "$thislocaldir" ]]
 	then
