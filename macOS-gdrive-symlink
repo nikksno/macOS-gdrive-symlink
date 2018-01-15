@@ -216,20 +216,6 @@ do
 
 	proceed=y
 
-	if [ ! -d $thislocaldir ]
-	then
-		echo "${r}${b}$thislocaldir doesn't seem to exist for this user.${x}"
-		echo
-		echo "${b}This is strange, it's likely you've already partially run this script and have encoutered errors.${x}"
-		echo
-		echo "${b}If this is the case, please open an issue on GitHub, thank you.${x}"
-		echo
-		echo "${b}Skipping this directory...${x}"
-		echo
-		proceed=n
-	fi
-
-
 	if [[ -L "$thislocaldir" && -d "$thislocaldir" ]]
 	then
 		echo "${r}${b}$thislocaldir appears to already be a symlink to another directory.${x}"
@@ -246,6 +232,19 @@ do
 
                 if [ $moveuserdirs = "y" ]
         	then
+
+			if [ ! -d $thislocaldir ]
+			then
+				echo "${r}${b}$thislocaldir doesn't seem to exist for this user.${x}"
+				echo
+				echo "${b}This is strange, it's likely you've already partially run this script and have encoutered errors.${x}"
+				echo
+				echo "${b}If this is the case, please open an issue on GitHub, thank you.${x}"
+				echo
+				echo "${b}Skipping this directory...${x}"
+				echo
+				proceed=n
+			fi
 
         		if [ -d "$thisgddir" ]
         		then
