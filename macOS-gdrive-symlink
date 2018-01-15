@@ -1,5 +1,8 @@
 #!/bin/bash
 
+set -e
+set -u
+
 echo
 
 r=`tput setaf 1`
@@ -193,7 +196,7 @@ fi
 
 
 localbasedir="/Users/$seluser" # No trailing slash
-gdbasedir="/Users/$seluser/Google Drive/$gdsubdir" # No trailing slash
+gdbasedir="/Users/$seluser/Google Drive/${gdsubdir-}" # No trailing slash
 
 declare -a dirarray=(
 	"Applications"
